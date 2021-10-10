@@ -22,7 +22,6 @@ export default function Home() {
 
     const data = await res.json();
     setToken(data.token);
-    console.log(data);
     if (data.code === 200) setUser({ user: data?.data?.accounts[0] });
     else setError(data.message);
   };
