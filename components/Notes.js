@@ -37,7 +37,7 @@ export default function Notes({ token }) {
   }, [token]);
 
   return (
-    <div className="m-4">
+    <div className="m-4 container mx-auto">
       {notes.length > 0 ? (
         <>
           <ul className="nav nav-tabs">
