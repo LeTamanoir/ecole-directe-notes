@@ -1,4 +1,4 @@
-export default function Login({ onSubmit, setUsername, setPassword }) {
+export default function Login({ onSubmit, setUsername, setPassword, error }) {
   return (
     <form
       onSubmit={onSubmit}
@@ -39,6 +39,8 @@ export default function Login({ onSubmit, setUsername, setPassword }) {
         />
         <label htmlFor="floatingPassword">Mot de passe</label>
       </div>
+
+      {error && <div className="alert alert-danger">{error}</div>}
 
       <button className="btn btn-primary" type="submit">
         Connexion

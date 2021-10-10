@@ -9,9 +9,11 @@ export default function Home() {
 
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
+  const [error, setError] = useState("");
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     const res = await fetch("https://api.ecoledirecte.com/v3/login.awp", {
       method: "POST",
@@ -20,7 +22,8 @@ export default function Home() {
 
     const data = await res.json();
     setToken(data.token);
-    setUser(data?.data?.accounts[0]);
+    if (data.code === 200) setUser({ user: data?.data?.accounts[0] });
+    else setError(data.message);
   };
 
   const onLogout = () => {
@@ -33,17 +36,18 @@ export default function Home() {
       className="d-flex flex-column"
       style={{ width: "100%", minHeight: "100vh" }}
     >
-      {!token ? (
+      {token && user.user ? (
+        <>
+          <Profile onLogout={onLogout} user={user.user} />
+          <Notes token={token} />
+        </>
+      ) : (
         <Login
           setUsername={setUsername}
           setPassword={setPassword}
           onSubmit={onSubmit}
+          error={error}
         />
-      ) : (
-        <>
-          <Profile onLogout={onLogout} user={user} />
-          <Notes token={token} />
-        </>
       )}
       <footer className="mt-auto text-center">
         Martin Saldinger &copy; 2021

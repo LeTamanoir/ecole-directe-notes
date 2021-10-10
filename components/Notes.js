@@ -40,7 +40,7 @@ export default function Notes({ token }) {
     <div className="m-4 container mx-auto">
       {notes.length > 0 ? (
         <>
-          <ul className="nav nav-tabs">
+          <ul className="nav nav-tabs" style={{ borderBottom: "none" }}>
             {notes.map(({ periode }, i) => (
               <li className="nav-item" key={i}>
                 <a
