@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Notes({ token }) {
+export default function Notes({ token, userID }) {
   const [notes, setNotes] = useState([]);
   const [current, setCurrent] = useState(0);
 
@@ -23,7 +23,7 @@ export default function Notes({ token }) {
     if (token.length > 0) {
       const fetchNotes = async () => {
         const res = await fetch(
-          "https://api.ecoledirecte.com/v3/eleves/7305/notes.awp?verbe=get",
+          `https://api.ecoledirecte.com/v3/eleves/${userID}/notes.awp?verbe=get`,
           {
             method: "POST",
             body: `data={"token": "${token}"}`,

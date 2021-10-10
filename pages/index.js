@@ -22,6 +22,7 @@ export default function Home() {
 
     const data = await res.json();
     setToken(data.token);
+    console.log(data);
     if (data.code === 200) setUser({ user: data?.data?.accounts[0] });
     else setError(data.message);
   };
@@ -39,7 +40,7 @@ export default function Home() {
       {token && user.user ? (
         <>
           <Profile onLogout={onLogout} user={user.user} />
-          <Notes token={token} />
+          <Notes token={token} userID={user.user.id} />
         </>
       ) : (
         <Login
