@@ -33,7 +33,7 @@ export default function Home() {
       className="d-flex flex-column"
       style={{ width: "100%", minHeight: "100vh" }}
     >
-      {!token && Object.keys(user).length === 0 ? (
+      {!token ? (
         <Login
           setUsername={setUsername}
           setPassword={setPassword}
