@@ -20,7 +20,7 @@ export default function Notes({ token, userID }) {
   };
 
   useEffect(() => {
-    if (token.length > 0) {
+    if (token.length > 0 && userID.length > 0) {
       const fetchNotes = async () => {
         const res = await fetch(
           `https://api.ecoledirecte.com/v3/eleves/${userID}/notes.awp?verbe=get`,
@@ -34,7 +34,7 @@ export default function Notes({ token, userID }) {
       };
       fetchNotes();
     }
-  }, [token]);
+  }, [token, userID]);
 
   return (
     <div className="m-4 container mx-auto">
