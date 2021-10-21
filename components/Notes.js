@@ -69,25 +69,29 @@ export default function Notes({ token, userID }) {
               </tr>
             </thead>
             <tbody>
-              {notes[current]?.ensembleMatieres?.disciplines.map(
-                (matiere, i) => (
+              {notes[current]?.ensembleMatieres?.disciplines
+                .filter((d) => d.codeMatiere !== "")
+                .map((matiere, i) => (
                   <tr key={i}>
                     <td scope="row">
                       <b>{matiere.discipline}</b>
-                      <small
-                        className="ms-2 fst-italic"
-                        style={{ fontSize: "0.8rem" }}
-                      >
-                        {matiere.professeurs[0]?.nom}
-                      </small>
+
+                      {matiere.professeurs?.map((prof, i) => (
+                        <small
+                          key={i}
+                          className="ms-2 fst-italic"
+                          style={{ fontSize: "0.8rem" }}
+                        >
+                          {prof?.nom}
+                        </small>
+                      ))}
                     </td>
                     <td>{matiere.moyenne}</td>
                     <td>{matiere.moyenneClasse}</td>
                     <td>{matiere.moyenneMax}</td>
                     <td>{matiere.moyenneMin}</td>
                   </tr>
-                )
-              )}
+                ))}
               <tr>
                 <th scope="row">GENERALE</th>
                 <td>{getAverage(current, "moyenne") || ""}</td>
