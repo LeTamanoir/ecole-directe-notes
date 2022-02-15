@@ -44,6 +44,8 @@ export default function Home() {
       ) : (
         <Login
           setUsername={setUsername}
+          username={username}
+          password={password}
           setPassword={setPassword}
           onSubmit={onSubmit}
           error={error}

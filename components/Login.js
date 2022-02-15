@@ -1,4 +1,11 @@
-export default function Login({ onSubmit, setUsername, setPassword, error }) {
+export default function Login({
+  onSubmit,
+  username,
+  password,
+  setUsername,
+  setPassword,
+  error,
+}) {
   return (
     <form
       onSubmit={onSubmit}
@@ -25,6 +32,7 @@ export default function Login({ onSubmit, setUsername, setPassword, error }) {
           className="form-control"
           id="floatingInput"
           placeholder="Identifiant"
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <label htmlFor="floatingInput">Identifiant</label>
@@ -35,6 +43,7 @@ export default function Login({ onSubmit, setUsername, setPassword, error }) {
           className="form-control"
           id="floatingPassword"
           placeholder="Mot de passe"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <label htmlFor="floatingPassword">Mot de passe</label>
